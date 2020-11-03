@@ -54,6 +54,14 @@ export class AuthService {
     });
   }
 
+  reset(password: string, passwordConfirmation: string, code: string){
+    return this.http.post(`${environment.url}/auth/reset-password`, {
+      code,
+      password,
+      passwordConfirmation,
+    });
+  }
+
   logout(): Promise<void> {
     this.isAuthenticated.next(false);
     return Storage.remove({key: TOKEN_KEY});

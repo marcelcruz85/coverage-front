@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'forgot',
-    loadChildren: () => import('./user/forgot/forgot.module').then( m => m.ForgotPageModule)
+    loadChildren: () => import('./user/forgot/forgot.module').then( m => m.ForgotPageModule),
+    canLoad: [AutoLoginGuard]
   },
   {
     path: '',
@@ -27,6 +28,11 @@ const routes: Routes = [
   {
     path: 'intro',
     loadChildren: () => import('./intro/intro.module').then( m => m.IntroPageModule)
+  },
+  {
+    path: 'reset',
+    loadChildren: () => import('./user/reset/reset.module').then( m => m.ResetPageModule),
+    canLoad: [AutoLoginGuard]
   }
 ];
 @NgModule({

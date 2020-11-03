@@ -10,6 +10,12 @@
   color: #e2001e;
 }
 
+.loading-clear .loading-wrapper{
+  background: none;
+  box-shadow: none;
+  --spinner-color: #fff;
+}
+
 :root {
   h1{
     font-size: 36px;
