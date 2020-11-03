@@ -1,0 +1,7 @@
+{
+  "name": "coverage-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
