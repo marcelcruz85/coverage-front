@@ -1,7 +1,8 @@
+import { AnimationsService } from './../../_services/animations.service';
 import { AlertService } from './../../_services/alert.service';
 import { AuthService } from './../../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset',
@@ -16,7 +17,9 @@ export class ResetPage implements OnInit {
   constructor(
     private auth: AuthService,
     private route: ActivatedRoute,
-    private alert: AlertService
+    private alert: AlertService,
+    private router: Router,
+    private animation: AnimationsService
   ) { }
 
   ngOnInit() {
@@ -31,10 +34,18 @@ export class ResetPage implements OnInit {
   reset(){
     if (this.password && this.passwordConfirm) {
       if (this.password === this.passwordConfirm) {
+        this.animation.presentLoading('shoe');
         this.auth.reset(this.password, this.passwordConfirm, this.code).subscribe( res => {
-          this.alert.showAlert('Your password have been reset');
+          this.animation.presentLoading('hide');
+          this.alert.showAlert('Your password have been reset, go to your Login page or open the App');
         }, (err) => {
-          this.alert.showAlert(err.error.message[0].messages[0].message);
+          this.animation.presentLoading('hide');
+          if (err.error.message[0].messages[0].message === 'Incorrect code provided.') {
+            this.alert.showAlert('Link Expired, please try to resend the reset email again');
+            this.router.navigateByUrl('/forgot', { replaceUrl: true });
+          } else {
+            this.alert.showAlert(err.error.message[0].messages[0].message);
+          }
           console.log(err);
         });
       }else{
