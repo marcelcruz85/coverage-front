@@ -1,6 +1,7 @@
+import { Router } from '@angular/router';
+import { AlertService } from './../../_services/alert.service';
 import { AuthService } from './../../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private auth: AuthService,
-    public alertController: AlertController
+    private alert: AlertService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -22,16 +24,12 @@ export class LoginPage implements OnInit {
   async login(){
     if (this.username && this.password) {
       this.auth.login(this.username, this.password).subscribe(res => {
-        console.log(res);
+        this.router.navigateByUrl('/dashboard', { replaceUrl: true });
+      }, err => {
+        this.alert.showAlert(err.error.message[0].messages[0].message);
       });
     } else {
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Alert',
-        message: 'User name and password are required',
-        buttons: ['Dismiss']
-      });
-      await alert.present();
+      this.alert.showAlert('User name and password are required');
     }
   }
 

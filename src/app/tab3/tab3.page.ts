@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../_services/auth.service';
 import { AnimationsService } from './../_services/animations.service';
 import { Component } from '@angular/core';
 
@@ -10,7 +12,9 @@ export class Tab3Page {
   titlehide = false;
 
   constructor(
-    private animation: AnimationsService
+    private animation: AnimationsService,
+    private auth: AuthService,
+    private router: Router
   ) {}
 
   logScrolling(ev){
@@ -21,5 +25,10 @@ export class Tab3Page {
       this.titlehide = false;
       this.animation.hideTitle();
     }
+  }
+
+  async logout() {
+    await this.auth.logout();
+    this.router.navigateByUrl('/', { replaceUrl: true });
   }
 }

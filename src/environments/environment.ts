@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'http://206.189.169.147:1333'
+  url: 'https://coverage-back.consumerlaw.com'
 };
 
 /*
