@@ -1,17 +1,12 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
+    <ion-title id="title-tab1" #title>
+      Events
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content (ionScroll)="logScrolling($event)" fullscreen [scrollEvents]="true">
+  <h1 class="ion-margin-horizontal ion-no-padding ion-no-margin">Events</h1>
+  <br/>
 </ion-content>

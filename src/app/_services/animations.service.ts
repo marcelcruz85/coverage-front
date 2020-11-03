@@ -10,17 +10,17 @@ export class AnimationsService {
     private animationCtrl: AnimationController
   ) { }
 
-  hideTitle(){
+  hideTitle(element){
     const hideTitle: Animation = this.animationCtrl.create()
-      .addElement(document.getElementById('title'))
+      .addElement(element)
       .duration(100)
       .fromTo('opacity', '1', '0');
     hideTitle.play();
   }
 
-  showTitle(){
+  showTitle(element){
     const showTitle: Animation = this.animationCtrl.create()
-      .addElement(document.getElementById('title'))
+      .addElement(element)
       .duration(100)
       .fromTo('opacity', '0', '1');
     showTitle.play();

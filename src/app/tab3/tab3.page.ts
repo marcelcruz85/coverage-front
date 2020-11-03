@@ -18,12 +18,13 @@ export class Tab3Page {
   ) {}
 
   logScrolling(ev){
+    const element = document.getElementById('title-tab3');
     if (ev.detail.scrollTop > 37 && this.titlehide === false ) {
       this.titlehide = true;
-      this.animation.showTitle();
+      this.animation.showTitle(element);
     } else if (ev.detail.scrollTop < 38 && this.titlehide === true ) {
       this.titlehide = false;
-      this.animation.hideTitle();
+      this.animation.hideTitle(element);
     }
   }
 

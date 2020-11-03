@@ -1,6 +1,6 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
-    <ion-title id="title" #title>
+    <ion-title id="title-tab3" #title>
       Settings
     </ion-title>
   </ion-toolbar>
@@ -10,7 +10,7 @@
   <h1 class="ion-margin-horizontal ion-no-padding ion-no-margin">Settings</h1>
   <br/>
   <ion-list lines="full">
-    <ion-item button (click)="logout()">
+    <ion-item button (click)="logout()" detail="false">
       <ion-label>Log out</ion-label>
       <ion-icon slot="end" name="exit-outline"></ion-icon>
     </ion-item>
