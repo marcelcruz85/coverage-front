@@ -1,0 +1,55 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="login-content">
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="4" size-md="5" ></ion-col>
+      <ion-col size="4" size-md="2">
+        <ion-img src="../../../assets/logo.png" alt=""></ion-img>
+      </ion-col>
+      <ion-col size="4" size-md="5"></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12"><br/></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-md="6" offset-md="3">
+        <h4 class="ion-padding-horizontal ion-padding-top ion-no-margin">Proceed with your</h4>
+        <h1 class="ion-padding-horizontal ion-no-margin">Login</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-md="6" offset-md="3">
+        <ion-list>
+          <ion-item>
+              <ion-label position="floating">Username</ion-label>
+              <ion-input type="text" placeholder="Username" [(ngModel)]="username" required></ion-input>
+              <ion-icon slot="end" name="person-outline"></ion-icon>
+          </ion-item>
+            <br/>
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" placeholder="Password" [(ngModel)]="password" required></ion-input>
+              <ion-icon slot="end" name="key-outline"></ion-icon>
+          </ion-item>
+          <ion-item lines="none">
+            <a [routerLink]="['/forgot']">Forgot password?</a>
+          </ion-item>
+          <br/>
+          <br/>
+          <ion-button (click)="login()" expand="full" fill="solid" size="medium" color="primary">
+            Login
+          </ion-button>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

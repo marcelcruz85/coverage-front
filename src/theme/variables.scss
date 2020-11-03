@@ -2,7 +2,19 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+.item-interactive.ion-valid {
+  --highlight-background: #377fff;
+}
+
+.item-interactive.ion-invalid.item-has-focus .sc-ion-label-md-h.sc-ion-label-md-s.md.label-floating.hydrated {
+  color: #e2001e;
+}
+
 :root {
+  h1{
+    font-size: 36px;
+    font-weight: 700;
+  }
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -44,7 +56,7 @@
   --ion-color-warning-tint: #ffca22;
 
   /** danger **/
-  --ion-color-danger: #eb445a;
+  --ion-color-danger: #e2001e;
   --ion-color-danger-rgb: 235, 68, 90;
   --ion-color-danger-contrast: #ffffff;
   --ion-color-danger-contrast-rgb: 255, 255, 255;

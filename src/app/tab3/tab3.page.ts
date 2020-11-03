@@ -1,3 +1,4 @@
+import { AnimationsService } from './../_services/animations.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,7 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  titlehide = false;
 
-  constructor() {}
+  constructor(
+    private animation: AnimationsService
+  ) {}
 
+  logScrolling(ev){
+    if (ev.detail.scrollTop > 37 && this.titlehide === false ) {
+      this.titlehide = true;
+      this.animation.showTitle();
+    } else if (ev.detail.scrollTop < 38 && this.titlehide === true ) {
+      this.titlehide = false;
+      this.animation.hideTitle();
+    }
+  }
 }

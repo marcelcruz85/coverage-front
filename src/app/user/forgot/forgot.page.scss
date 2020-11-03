@@ -1,0 +1,19 @@
+ion-toolbar{
+    --background: transparent
+}
+
+h1{
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.login-content {
+     --ion-item-background: transparent;
+}
+.ion-color-danger {
+    --ion-color-base: #bc0701 !important;
+}
+
+// ion-item.item-has-focus > ion-label{
+//     color:  orange  !important;
+//   }
