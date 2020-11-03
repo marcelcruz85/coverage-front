@@ -34,14 +34,14 @@ export class ResetPage implements OnInit {
   reset(){
     if (this.password && this.passwordConfirm) {
       if (this.password === this.passwordConfirm) {
-        this.animation.presentLoading('shoe');
+        this.animation.presentLoading('show');
         this.auth.reset(this.password, this.passwordConfirm, this.code).subscribe( res => {
           this.animation.presentLoading('hide');
           this.alert.showAlert('Your password have been reset, go to your Login page or open the App');
         }, (err) => {
           this.animation.presentLoading('hide');
-          if (err.error.message[0].messages[0].message === 'Incorrect code provided.') {
-            this.alert.showAlert('Link Expired, please try to resend the reset email again');
+          if (err.error.message[0].messages[0].message === 'Incorrect code provided.' || err.error.message[0].messages[0].message === 'Incorrect params provided.') {
+            this.alert.showAlert('This link xxpired or was already used, please try to resend the reset email again');
             this.router.navigateByUrl('/forgot', { replaceUrl: true });
           } else {
             this.alert.showAlert(err.error.message[0].messages[0].message);
