@@ -14,4 +14,8 @@ export class CourtsService {
   findMyCourts(){
     return this.http.get(`${environment.sugarUrl}/find-courts`);
   }
+
+  findOneCourt(id: string){
+    return this.http.get(`${environment.sugarUrl}/find-one-court?id=${id}`);
+  }
 }

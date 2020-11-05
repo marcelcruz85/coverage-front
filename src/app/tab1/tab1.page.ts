@@ -1,8 +1,8 @@
 import { CourtsService } from './../_services/courts.service';
-import { Router } from '@angular/router';
 import { AuthService } from './../_services/auth.service';
 import { AnimationsService } from './../_services/animations.service';
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -75,9 +75,16 @@ export class Tab1Page implements OnInit{
         }
       });
       this.animation.presentLoading('hide');
-      console.log(this.courts);
-
     });
+  }
+
+  goToDetails(ev){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        court: ev.id
+      }
+    };
+    this.router.navigate(['/event/details'], navigationExtras);
   }
 
 }

@@ -1,0 +1,59 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Event Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item button line="full" color="warning">
+    <ion-label>Confirm Availability</ion-label>
+  </ion-item>
+  <ion-list lines="full">
+    <ion-item-group>
+      <ion-item-divider sticky>
+        <ion-label>
+          Client Information
+        </ion-label>
+      </ion-item-divider>
+      
+      <ion-item>
+        <ion-label> 
+          <p>Name</p>
+          {{courtEvent.client_name}}
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+    
+    <ion-item-group>
+      <ion-item-divider sticky>
+        <ion-label>
+          Court Information
+        </ion-label>
+      </ion-item-divider>
+  
+      <ion-item>
+        <ion-label>  
+          <p class="top-label">Date</p>
+          {{courtEvent.court_date | date}}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>  
+          <p class="top-label">Time</p>
+          {{courtEvent.court_time}}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label class="ion-text-wrap">  
+          <p class="top-label">Address</p>
+          {{courtEvent.court_location_c}}
+        </ion-label>
+      </ion-item>
+    </ion-item-group>
+
+  </ion-list>
+
+</ion-content>

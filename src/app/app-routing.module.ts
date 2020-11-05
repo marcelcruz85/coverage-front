@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'reset',
     loadChildren: () => import('./user/reset/reset.module').then( m => m.ResetPageModule),
     canLoad: [AutoLoginGuard]
+  },
+  {
+    path: 'event/details',
+    loadChildren: () => import('./event/details/details.module').then( m => m.DetailsPageModule)
   }
 ];
 @NgModule({
