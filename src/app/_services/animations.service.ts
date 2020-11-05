@@ -37,7 +37,7 @@ export class AnimationsService {
         // message: 'Please wait...',
         // duration: 2000
       });
-      await this.loading.present();
+      return await this.loading.present();
     } else if ( op === 'hide' ){
       await this.loading.dismiss();
     }

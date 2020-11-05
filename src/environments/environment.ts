@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'https://coverage-back.consumerlaw.com'
+  url: 'https://coverage-back.consumerlaw.com',
+  sugarUrl: 'https://cors-anywhere.herokuapp.com/https://sugar.consumerlaw.com/rest/v11_1'
 };
 
 /*
