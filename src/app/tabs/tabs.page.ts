@@ -1,31 +1,36 @@
-import { Component } from '@angular/core';
+import { SocketService } from './../_services/socket.service';
+import { Component, OnInit } from '@angular/core';
 import { Badge } from '@ionic-native/badge/ngx';
-import { Socket } from 'ngx-socket-io';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
-export class TabsPage {
+export class TabsPage implements OnInit{
+  title = 'app';
+  incomingmsg = [];
+  msg = 'First Protocol';
 
   constructor(
     private badge: Badge,
-    private socket: Socket
+    private socketService: SocketService
   ) {
     this.badge.set(5);
   }
 
-  sendMessage(msg: string){
-    this.socket.emit('message', msg);
+  ngOnInit() {
+    this.socketService
+        .getMessage()
+        .subscribe(msg => {
+          console.log('Incoming msg', msg);
+        });
+    this.sendMsg(this.msg);
   }
 
-  getMessage() {
-      return this.socket
-          .fromEvent('hello')
-          .pipe(map((data) => {
-            console.log(data);
-          }));
+  sendMsg(msg) {
+    console.log('sdsd', msg);
+    this.socketService.sendMessage(msg);
   }
+
 }
