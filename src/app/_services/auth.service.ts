@@ -34,20 +34,42 @@ export class AuthService {
     }
   }
 
-  login(identifier: string, password: string): Observable<any> {
-    return this.http.post(`${environment.url}/auth/local`, {
+  async login(identifier: string, password: string) {
+    return await this.http.post(`${environment.url}/auth/local`, {
       identifier,
       password
-    }).pipe(
-      map((data: any) => data.jwt),
-      switchMap(jwt => {
-        return from(Storage.set({key: TOKEN_KEY, value: jwt}));
-      }),
-      tap(_ => {
-        this.isAuthenticated.next(true);
-      })
-    );
+    }).toPromise().then(async res => {
+      const user: any = res;
+      await Storage.set({key: TOKEN_KEY, value: user.jwt});
+      this.isAuthenticated.next(true);
+      this.token = user.jwt;
+      return res;
+    });
+    // .pipe(
+    //   map((data: any) => data.jwt),
+    //   switchMap(jwt => {
+    //     return from(Storage.set({key: TOKEN_KEY, value: jwt}));
+    //   }),
+    //   tap(_ => {
+    //     this.isAuthenticated.next(true);
+    //   })
+    // );
   }
+
+  // login(identifier: string, password: string): Observable<any> {
+  //   return this.http.post(`${environment.url}/auth/local`, {
+  //     identifier,
+  //     password
+  //   }).pipe(
+  //     map((data: any) => data.jwt),
+  //     switchMap(jwt => {
+  //       return from(Storage.set({key: TOKEN_KEY, value: jwt}));
+  //     }),
+  //     tap(_ => {
+  //       this.isAuthenticated.next(true);
+  //     })
+  //   );
+  // }
 
   forgot(email: string){
     return this.http.post(`${environment.url}/auth/forgot-password`, {
@@ -64,6 +86,7 @@ export class AuthService {
   }
 
   logout(): Promise<void> {
+    this.token = null;
     this.isAuthenticated.next(false);
     return Storage.remove({key: TOKEN_KEY});
   }

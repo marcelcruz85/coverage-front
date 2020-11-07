@@ -25,14 +25,24 @@ export class LoginPage implements OnInit {
 
   async login(){
     if (this.username && this.password) {
-      this.animation.presentLoading('show');
-      this.auth.login(this.username, this.password).subscribe(res => {
+      await this.animation.presentLoading('show');
+      this.auth.login(this.username, this.password).then(res => {
+        console.log('res');
         this.router.navigateByUrl('/dashboard', { replaceUrl: true });
         this.animation.presentLoading('hide');
-      }, err => {
+      }).catch( err => {
+        console.log(err);
         this.alert.showAlert(err.error.message[0].messages[0].message);
         this.animation.presentLoading('hide');
       });
+      // await this.animation.presentLoading('show');
+      // this.auth.login(this.username, this.password).subscribe(res => {
+      //   this.router.navigateByUrl('/dashboard', { replaceUrl: true });
+      //   this.animation.presentLoading('hide');
+      // }, err => {
+      //   this.alert.showAlert(err.error.message[0].messages[0].message);
+      //   this.animation.presentLoading('hide');
+      // });
     } else {
       this.alert.showAlert('User name and password are required');
     }
