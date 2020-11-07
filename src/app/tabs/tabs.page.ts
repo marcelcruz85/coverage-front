@@ -1,3 +1,4 @@
+import { AlertService } from './../_services/alert.service';
 import { SocketService } from './../_services/socket.service';
 import { Component, OnInit } from '@angular/core';
 import { Badge } from '@ionic-native/badge/ngx';
@@ -16,7 +17,8 @@ export class TabsPage implements OnInit{
 
   constructor(
     private badge: Badge,
-    private socketService: SocketService
+    private socketService: SocketService,
+    private alert: AlertService,
   ) {
     this.badge.set(5);
   }
@@ -47,10 +49,18 @@ export class TabsPage implements OnInit{
           sound: null,
           attachments: null,
           actionTypeId: "",
-          extra: null
+          extra: {
+            route: '/whatever',
+          }
         }
       ]
     });
+
+    LocalNotifications.addListener('localNotificationActionPerformed', (res) => {
+      this.alert.showAlert(JSON.stringify(res.notification));
+      console.log(res.notification.extra);
+    });
+
     console.log('scheduled notifications', notifs);
   }
 }

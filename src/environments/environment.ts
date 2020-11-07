@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   url: 'https://coverage-back.consumerlaw.com',
-  sugarUrl: 'https://cors-anywhere.herokuapp.com/https://sugar.consumerlaw.com/rest/v11_1'
+  strapiProxy: 'https://coverage-back.consumerlaw.com/proxy',
+  // sugarUrl: 'https://cors-anywhere.herokuapp.com/https://sugar.consumerlaw.com/rest/v11_1'
 };
 
 /*

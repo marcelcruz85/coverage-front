@@ -1,0 +1,38 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">
+        Cancel
+      </ion-button>
+    </ion-buttons>
+    <!-- <ion-title>Confirm Availability</ion-title> -->
+    <ion-buttons slot="end" *ngIf="confirmed != 'Yes'">
+      <ion-button (click)="save()">
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p class="ion-text-center ion-padding-horizontal" *ngIf="confirmed == 'Yes'">You confirmed yous asistace to this event, if you change your desicion please call us to 8775096422</p>
+
+  <ion-list lines="full" *ngIf="confirmed != 'Yes'" >
+    <ion-radio-group [(ngModel)]="confirmedAvialability">
+      <h1 class="ion-padding-horizontal">Confirm Avialability</h1>
+      <!-- <ion-list-header>
+        <ion-label>Confirm Avialability</ion-label>
+      </ion-list-header> -->
+      <p class="ion-padding-horizontal">Confirm if you will be able to attend to this court</p>
+      <ion-item>
+        <ion-label>Yes</ion-label>
+        <ion-radio slot="end" value="Yes"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>No</ion-label>
+        <ion-radio slot="end" value="No"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+</ion-content>

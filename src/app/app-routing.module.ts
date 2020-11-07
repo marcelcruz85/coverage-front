@@ -37,6 +37,10 @@ const routes: Routes = [
   {
     path: 'event/details',
     loadChildren: () => import('./event/details/details.module').then( m => m.DetailsPageModule)
+  },
+  {
+    path: 'confirm-availability',
+    loadChildren: () => import('./modals/confirm-availability/confirm-availability.module').then( m => m.ConfirmAvailabilityPageModule)
   }
 ];
 @NgModule({
