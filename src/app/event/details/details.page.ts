@@ -1,3 +1,4 @@
+import { NotificationsService } from './../../_services/notifications.service';
 import { ConfirmAvailabilityPage } from './../../modals/confirm-availability/confirm-availability.page';
 import { AnimationsService } from './../../_services/animations.service';
 import { CourtsService } from './../../_services/courts.service';
@@ -19,6 +20,7 @@ export class DetailsPage implements OnInit {
     private courtService: CourtsService,
     private animation: AnimationsService,
     private modalController: ModalController,
+    private notifications: NotificationsService,
   ) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -28,13 +30,13 @@ export class DetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCourtEvent();
+    // this.getCourtEvent();
   }
 
   async getCourtEvent(){
     await this.animation.presentLoading('show');
     this.courtService.findOneCourt(this.courtEvent).subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.courtEvent = res;
       this.courtEvent.court_date = new Date(`${this.courtEvent.court_date_c.replace(/-/g, '/')} UTC`).toLocaleDateString();
       this.courtEvent.court_time = new Date(`${this.courtEvent.court_date_c.replace(/-/g, '/')} UTC`).toLocaleTimeString();
@@ -54,6 +56,11 @@ export class DetailsPage implements OnInit {
     await modal.present();
     await modal.onWillDismiss().then(res => {
       if ( res.data ) {
+        const courtDate = this.courtEvent.court_date_c.replace(/-/g, '/');
+        let notificationDate: any = new Date(new Date(courtDate) as any - 1000 * 60 * 60 * 12); // 12 hours
+        notificationDate = new Date( notificationDate + ' UTC').toLocaleString();
+        console.log(notificationDate);
+        this.notifications.localNotification(notificationDate);
         this.courtEvent.court_confirmed_assistance_c = res.data.confirmedAvialability;
       }
     });
