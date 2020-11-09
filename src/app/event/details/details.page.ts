@@ -30,7 +30,7 @@ export class DetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.getCourtEvent();
+    this.getCourtEvent();
   }
 
   async getCourtEvent(){
